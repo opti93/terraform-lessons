@@ -80,16 +80,14 @@ resource "aws_autoscaling_group" "web" {
       Name  = "web_server_in_asg"
       Owner = "Opti"
     }
-  }
-  content {
-    key                 = tag.key
-    value               = tag.value
-    propagate_at_launch = true
-  }
-  lifecycle {
-    create_before_destroy = true
-  }
-
+    content {
+      key                 = tag.key
+      value               = tag.value
+      propagate_at_launch = true
+    }
+    lifecycle {
+      create_before_destroy = true
+    }
 }
 
 #----------------------------------------------------------
