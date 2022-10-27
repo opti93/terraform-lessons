@@ -85,9 +85,9 @@ resource "aws_autoscaling_group" "web" {
       value               = tag.value
       propagate_at_launch = true
     }
-    lifecycle {
-      create_before_destroy = true
-    }
+  }
+  lifecycle {
+    create_before_destroy = true
   }
 }
 
