@@ -52,11 +52,11 @@ resource "aws_security_group" "my_webserver" {
 }
 
 resource "aws_launch_configuration" "web" {
-  name                   = "web_server"
-  image_id               = data.aws_ami.latest_linux.id
-  instance_type          = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.my_webserver.id]
-  user_data              = file("user_data.sh")
+  name            = "web_server"
+  image_id        = data.aws_ami.latest_linux.id
+  instance_type   = "t2.micro"
+  security_groups = [aws_security_group.my_webserver.id]
+  user_data       = file("user_data.sh")
 
   lifecycle {
     create_before_destroy = true
@@ -95,7 +95,7 @@ resource "aws_autoscaling_group" "web" {
 #----------------------------------------------------------
 
 resource "aws_elb" "web" {
-  name               = "web_server_elb"
+  name               = "WebServerElb"
   availability_zones = [data.aws_availability_zones.available.names[0], data.aws_availability_zones.available.names[1]]
   security_groups    = [aws_security_group.my_webserver.id]
   listener {
