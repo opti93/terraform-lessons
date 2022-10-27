@@ -9,7 +9,7 @@
 # Made by Denis Astahov 11-June-2019
 #-----------------------------------------------------------
 
-provide "aws" {
+provider "aws" {
   region = "eu-central-1"
 }
 
