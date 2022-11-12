@@ -17,5 +17,6 @@ variable "allow_ports" {
 }
 
 variable "enable_detailed_monitoring" {
-  default = "true"
+  type    = bool
+  default = "false"
 }
