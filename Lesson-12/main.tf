@@ -6,6 +6,10 @@
 # Made by Opti93
 #--------------------------------
 
+
+variable "region" {}
+
+
 provider "aws" {
   region = "eu-central-1"
 }
