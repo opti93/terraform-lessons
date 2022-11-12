@@ -20,3 +20,13 @@ variable "enable_detailed_monitoring" {
   type    = bool
   default = "false"
 }
+
+variable "common_tags" {
+  type = map(any)
+  default = {
+    Owner       = "Opti"
+    Project     = "Phoenix"
+    CostCenter  = "123456"
+    environment = "developmet"
+  }
+}

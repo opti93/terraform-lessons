@@ -21,12 +21,14 @@ data "aws_ami" "latest_amazon_linux" {
 
 resource "aws_eip" "my_static_ip" {
   instance = aws_instance.my_server.id
+  tags     = merge(var.common_tags, { Name = "Server IP" })
+  /*
   tags = {
     Name    = "Server IP"
     Owner   = "Opti"
     Project = "Phoenix"
-    Region  = var.region
   }
+*/
 }
 
 resource "aws_instance" "my_server" {
@@ -34,13 +36,16 @@ resource "aws_instance" "my_server" {
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.my_server.id]
   monitoring             = var.enable_detailed_monitoring
-
+  tags                   = merge(var.common_tags, { Name = "Server Build by Terraform" })
+  /*
   tags = {
     Name    = "Server Build by Terraform"
     Owner   = "Opti"
     Project = "Phoenix"
   }
+*/
 }
+
 
 resource "aws_security_group" "my_server" {
   name = "My security group"
@@ -60,9 +65,12 @@ resource "aws_security_group" "my_server" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = merge(var.common_tags, { Name = "Server SecurityGroup" })
+  /*
   tags = {
     Name    = "Server SecurityGroup"
     Owner   = "Opti"
     Project = "Phoenix"
   }
+*/
 }
