@@ -45,7 +45,7 @@ resource "aws_security_group" "my_server" {
   name = "My security group"
 
   dynamic "ingress" {
-    for_each = ["80", "443"]
+    for_each = var.allow_ports
     content {
       from_port   = ingress.value
       to_port     = ingress.value
