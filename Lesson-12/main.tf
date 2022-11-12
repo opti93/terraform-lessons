@@ -7,11 +7,13 @@
 #--------------------------------
 
 
-variable "region" {}
+variable "region" {
+  description = "Please enter AWS resgion to deploy server"
+}
 
 
 provider "aws" {
-  region = "eu-central-1"
+  region = var.region
 }
 
 data "aws_ami" "latest_amazon_linux" {
@@ -29,6 +31,7 @@ resource "aws_eip" "my_static_ip" {
     Name    = "Server IP"
     Owner   = "Opti"
     Project = "Phoenix"
+    Region  = var.region
   }
 }
 
