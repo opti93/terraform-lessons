@@ -15,3 +15,7 @@ variable "allow_ports" {
   type        = list(any)
   default     = ["80", "443", "22"]
 }
+
+variable "enable_detailed_monitoring" {
+  default = "true"
+}
