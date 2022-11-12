@@ -44,11 +44,13 @@ resource "aws_security_group" "my_server" {
   name = "My security group"
 
   dynamic "ingress" {
-    for_each   = ["80", "443"]
-    from_port  = ingress.value
-    to_port    = ingress.value
-    protocol   = "tcp"
-    cidr_block = ["0.0.0.0/0"]
+    for_each = ["80", "443"]
+    content {
+      from_port  = ingress.value
+      to_port    = ingress.value
+      protocol   = "tcp"
+      cidr_block = ["0.0.0.0/0"]
+    }
   }
   egress {
     from_port   = 0
